@@ -1,0 +1,9 @@
+
+2. in order to avoid contention since dept is higly used on the filter criteria, we can partition the table by dept, subpartitioned by loc because dept have more distinct values and is heavily used to filter queries made by the  users using the app. the creation of the PK on table item_loc_soh (dept, loc, item) also helps improving the performance.
+
+    Bennefits:
+    1 Queries filtered by dept will not use irrelevant partitions, will access data more efficiently
+
+    2 Subpartiition by loc allow better parallel processing for queries that use both columns (dept, loc)
+
+3. The partitioning and subpartitioning of the table mentioned on exercise 2 is one of the strategies to avoid it. The use of the composite created by the PK (dept, loc, item) is another stratagies that helps. Another suggestion is to use row-level locking instead of tablel-level locking (use SELECT .. FOR UODATE). When inserting data try to use INSERT ALL or MERGE to minimize row-level locks.

@@ -1,0 +1,11 @@
+11.
+
+The main issue I can see on the AWR report is CPU rresource contention caused by Oracle Database Resource Manager (resmgr:cpu quantum).
+
+Sueggestions:
+
+1 - Scale up CPU, the system has 8 cpus which looks like is not enough for thr workload. 
+
+2 - There also high logical reads. Indexing columns frequently used to access that can improve the number of logical reads, also optimizing the execution plans using hints or gathering statitisc may also help.
+
+3 - We can also tune the Paralelism, make sure parallel query settings (PARALLEL_MAX_SERVERS) are aligned with the CPU capaticy and reduce excessive parallelism causing CPU saturation.

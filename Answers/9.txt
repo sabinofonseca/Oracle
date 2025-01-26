@@ -1,0 +1,1 @@
+9. with the creation of PK (dept, loc, item) the explain start to use the PK index instead of do a FULL TABLE SCAN. (please refer to 9-screenshot.jpg on the Answers folder on GitHub shared)
